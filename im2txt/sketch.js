@@ -19,7 +19,7 @@
 // Sends an image to Runway via HTTP Post request, get the caption of the image back
 
 // Update the following url based on the server address shown in your Runway app under Input--Network
-const url = 'http://localhost:8006/query';
+const url = 'http://localhost:8000/query';
 let myCanvas, video, button; 
 
 function setup() {
@@ -63,8 +63,8 @@ function image2Txt() {
     };
     // Send HTTP Post request to Runway with image data, runway will return the image caption
     httpPost(url, 'json', postData, (output) => {
-      if (output && output.results && output.results[0]) {
-        createElement('h2', output.results[0].caption);
+      if (output) {
+        createElement('h2', output.caption);
 
         // Call image2Txt again
         image2Txt();
